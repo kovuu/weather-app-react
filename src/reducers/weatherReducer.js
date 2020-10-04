@@ -1,13 +1,13 @@
-const initialState = {
-    city: 'Krasnodar',
-    temp: 27,
-    humidity: 80,
-    wind: 45,
-    pressure: 1000
-}
+import {WEATHER_UPDATE} from "../consts/actionTypes";
 
-const weatherReducer = (state = initialState, action) => {
-    switch (action.type) {
+const weatherReducer = (state = {}, {type ,params}) => {
+    switch (type) {
+        case WEATHER_UPDATE:
+            const {city, temp, humidity, wind, pressure, weather, icon} = params;
+            return {
+                city, temp, humidity,
+                wind, pressure, weather, icon
+            }
         default:
             return state;
     }

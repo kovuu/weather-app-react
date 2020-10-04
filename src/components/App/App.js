@@ -4,7 +4,6 @@ import Layout from "../Layout/Layout";
 
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
-
 const App = () => (
     <BrowserRouter>
         <Switch>

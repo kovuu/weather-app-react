@@ -1,13 +1,8 @@
 import React from "react";
 import {Menu} from "antd";
 import {NavLink, withRouter} from "react-router-dom";
-
-
-const modes = [
-    {label: 'Сегодня', name: 'today'},
-    {label: '3 дня', name: 'three-days'},
-    {label: 'Неделя', name: 'week'},
-]
+import modes from "../../../consts/modes";
+import {updateWeather} from "../../../actions/weather";
 
 const ModeMenu = (props) => {
     const city = props.match.params.city;
@@ -16,9 +11,13 @@ const ModeMenu = (props) => {
     return (
             <Menu theme="dark" mode="horizontal" defaultSelectedKeys={[mode]}>
                 {modes.map((mode, index) => {
+                    const params = {
+                        city,
+                        mode
+                    }
                     return (
                     <Menu.Item key={mode.name} >
-                        <NavLink to={`/${city}/${mode.name}`}>
+                        <NavLink onClick={() => updateWeather(params)} to={`/${city}/${mode.name}`}>
                             {mode.label}
                         </NavLink>
                     </Menu.Item>

@@ -2,15 +2,9 @@ import React from "react";
 import {Dropdown, Menu} from "antd";
 import {DownOutlined} from "@ant-design/icons";
 import {NavLink, withRouter} from "react-router-dom";
-
-
-const cities = [
-    'Krasnodar', 'Taganrog', 'Moscow', 'Murmansk'
-]
-
+import cities from "../../../consts/cities"
 
 const CityMenu = (props) => {
-
     const toNameCase = (city) => {
         return city.charAt(0).toUpperCase() + city.substr(1);
     }
@@ -19,10 +13,16 @@ const CityMenu = (props) => {
 
     const citiesListMenu = (
         <Menu className="citiesList">
-            {cities.map((city, index) => {
+            {cities.map((cityInfo, index) => {
+                const city = cityInfo.city;
+                const mode = props.match.params.mode;
+                const params = {
+                    city,
+                    mode
+                }
                 return (
                     <Menu.Item key={index}>
-                        <NavLink to={`/${city.toLowerCase()}/${props.match.params.mode}`}>
+                        <NavLink onClick={() => props.updateWeather(params)} to={`/${city.toLowerCase()}/${mode}`}>
                             {city}
                         </NavLink>
                     </Menu.Item>
