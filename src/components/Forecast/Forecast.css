@@ -1,0 +1,67 @@
+.content-module {
+    margin-bottom: 16px;
+    vertical-align: center;
+
+}
+
+.weather-card {
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.item-container {
+    width: 60%;
+    padding: 2px;
+}
+
+.item-card-header {
+    border-left: 4px solid #cf0a0a;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.item-card-header .date {
+    margin-left: 20px;
+    min-width: 52px;
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.item-card-header .date span {
+    display: block;
+}
+
+.item-card-header .date sub {
+    color: #8b8b8b;
+    font-weight: 400;
+}
+
+.item-card-header .icon {
+    width: 62px;
+    height: 62px;
+    margin-right: 8px;
+    vertical-align: center;
+}
+
+.item-card-header .temp {
+    font-size: 48px;
+    white-space: nowrap;
+    font-weight: 500;
+    line-height: 1.08;
+    width: 48px;
+    text-align: center;
+    margin-right: 8px;
+    flex-basis: 16.66%;
+}
+
+.item-card-header.phrase {
+    display: block;
+    font-size: 18px;
+    line-height: 1.22;
+    flex-basis: 16.66%;
+}

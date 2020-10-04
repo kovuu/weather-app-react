@@ -1,0 +1,14 @@
+@import '~antd/dist/antd.css';
+
+
+
+.site-layout-content {
+    background: #fff;
+    padding: 24px;
+    min-height: 280px;
+    height: 100%;
+}
+
+.layout {
+    height: 100%;
+}
