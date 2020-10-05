@@ -15,24 +15,30 @@ const Forecast = ({forecasts}) => {
                                 <div className="item-card-header">
                                     <div>
                                         <h2 className="date">
-                                            <span>{forecast.hours}</span>
+                                            {!forecast.units && <span>{forecast.hours}:00</span>}
                                             <span className="sub">
                                                 {forecast.day}
                                         </span>
                                         </h2>
-                                        <img alt="test" className="weather-icon icon" src={`http://openweathermap.org/img/wn/${forecast.icon}@2x.png`}/>
                                     </div>
+                                    <img alt="test" className="weather-icon icon" src={`http://openweathermap.org/img/wn/${forecast.icon}@2x.png`}/>
+
                                     <div className="temp metric">
-                                        {forecast.temp}°
+                                        <span>{forecast.temp}°
+                                        {forecast.nightTemp ?
+                                        <span>&nbsp;/&nbsp;{forecast.nightTemp}°</span>
+                                                        : null}</span>
                                     </div>
                                     <span className="phrase">
-                                        {forecast.weather}
+                                        <span>{forecast.weather}</span>
                                 </span>
                                     <div className="precip">
+                                        <span>
                                         <img alt="test"
                                              src="https://www.accuweather.com/images/components/weather/hourly-card-nfl/drop-icon.svg"
-                                             className="precip-icon"/>
+                                             className="precip-icon"/>&nbsp;
                                         {forecast.pop}%
+                                        </span>
                                     </div>
                                 </div>
                             </div>

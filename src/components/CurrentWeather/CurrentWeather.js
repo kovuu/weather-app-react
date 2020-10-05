@@ -19,19 +19,19 @@ const CurrentWeather = ({ temp, time, city, humidity, wind, pressure, icon, weat
             </div>
             <div className="weather-card-panel details-container">
                 <div className="spaced-content detail">
-                    <span className="label">Город</span>
+                    <span className="label">City</span>
                     <span className="value">{city}</span>
                 </div>
                 <div className="spaced-content detail">
-                    <span className="label">Скорость ветра</span>
-                    <span className="value">{wind} км/ч</span>
+                    <span className="label">Wind</span>
+                    <span className="value">{wind} km/h</span>
                 </div>
                 <div className="spaced-content detail">
-                    <span className="label">Давление</span>
-                    <span className="value">{pressure} мм.рт.cт</span>
+                    <span className="label">Pressure</span>
+                    <span className="value">{pressure} mmHg</span>
                 </div>
                 <div className="spaced-content detail">
-                    <span className="label">Влажность</span>
+                    <span className="label">Humidity</span>
                     <span className="value">{humidity}%</span>
                 </div>
             </div>

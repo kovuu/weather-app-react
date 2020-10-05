@@ -1,4 +1,7 @@
-import {HOURLY_FORECAST, THREE_DAY_FORECAST, WEATHER_UPDATE, WEEKLY_FORECAST} from "../consts/actionTypes";
+import {
+    FORECAST_UPDATE,
+    WEATHER_UPDATE,
+} from "../consts/actionTypes";
 import axios from "../axios/axios";
 import cities from "../consts/cities";
 
@@ -40,33 +43,21 @@ export function updateForecast(params) {
             const city = cities.filter(city => city.city.toLowerCase() === params.city.toLowerCase())[0];
             const apiKey = process.env.REACT_APP_API_KEY;
             const response = await axios.get(`/onecall?lat=${city.coords[0]}&lon=${city.coords[1]}&appid=${apiKey}&units=metric`);
+            let forecast = [];
             // eslint-disable-next-line default-case
             switch (params.mode) {
                 case 'today':
-                    const forecastData = response.data.hourly;
-                    let forecast = [];
-                    for (let i = 0; i < 24; i++) {
-                        const data = forecastData[i];
-
-                        const date = new Date(data.dt * 1000);
-                        const day = `${date.getDate()}/${date.getMonth() + 1}`;
-                        const hours = date.getHours();
-                        const parameters = {
-                            temp: parseInt(data.temp),
-                            weather: data.weather[0].main,
-                            icon: data.weather[0].icon,
-                            hours, day,
-                            pop: data.pop,
-                        }
-                        forecast.push(parameters);
-                    }
-                    dispatch(getHourlyForecast(forecast));
+                    forecast = getForecastHourlyData(response.data.hourly, 24);
+                    dispatch(updateForecastDispatch(forecast));
                     break;
                 case 'three-days':
-                    dispatch(getThreeDayForecast());
+                    forecast = getForecastHourlyData(response.data.hourly, 48);
+                    dispatch(updateForecastDispatch(forecast));
                     break;
                 case 'week':
-                    dispatch(getWeeklyForecast());
+                    console.log(response.data.daily);
+                    forecast = getForecastWeeklyData(response.data.daily);
+                    dispatch(updateForecastDispatch(forecast));
                     break;
             }
         } catch(e) {
@@ -75,20 +66,51 @@ export function updateForecast(params) {
     }
 }
 
-export function getHourlyForecast(forecastData) {
-    return {
-        type: HOURLY_FORECAST,
-        forecastData
+export function getForecastHourlyData(forecastData, hours) {
+    let forecast = [];
+        for (let i = 0; i < hours; i++) {
+            const data = forecastData[i];
+
+            const date = new Date(data.dt * 1000);
+            const day = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+            const hours = date.getHours() === 0 ? 24 : date.getHours();
+            const parameters = {
+                temp: parseInt(data.temp),
+                weather: data.weather[0].main,
+                icon: data.weather[0].icon,
+                hours, day,
+                pop: parseInt(data.pop * 100),
+            }
+            forecast.push(parameters);
     }
+        return forecast;
 }
 
-export function getThreeDayForecast() {
-    return {
-        type: THREE_DAY_FORECAST
+export function getForecastWeeklyData(forecastData) {
+    let forecast = [];
+    for (let i = 0; i < forecastData.length; i++) {
+        const data = forecastData[i];
+
+        const date = new Date(data.dt * 1000);
+        const day = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+        const hours = date.getHours() === 0 ? 24 : date.getHours();
+        const parameters = {
+            temp: parseInt(data.temp.day),
+            nightTemp: parseInt(data.temp.night),
+            weather: data.weather[0].main,
+            icon: data.weather[0].icon,
+            hours, day,
+            pop: parseInt(data.pop * 100),
+            units: 'days'
+        }
+        forecast.push(parameters);
     }
+    return forecast;
 }
-export function getWeeklyForecast() {
+
+export function updateForecastDispatch(forecastData) {
     return {
-        type: WEEKLY_FORECAST
+        type: FORECAST_UPDATE,
+        forecastData
     }
 }

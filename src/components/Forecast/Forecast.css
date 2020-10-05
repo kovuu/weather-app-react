@@ -28,8 +28,11 @@
     min-width: 52px;
     font-size: 14px;
     font-weight: 700;
+    width: 52px;
     white-space: nowrap;
     display: inline-block;
+    vertical-align: middle;
+
 }
 
 .item-card-header .date span {
@@ -50,18 +53,30 @@
 
 .item-card-header .temp {
     font-size: 48px;
+    width: 48px;
     white-space: nowrap;
     font-weight: 500;
     line-height: 1.08;
-    width: 48px;
-    text-align: center;
+    text-align: left;
     margin-right: 8px;
     flex-basis: 16.66%;
 }
 
-.item-card-header.phrase {
+.item-card-header .phrase {
     display: block;
-    font-size: 18px;
+    font-size: 14px;
     line-height: 1.22;
     flex-basis: 16.66%;
+
+}
+
+.phrase {
+    position: relative;
+    top: 0.8rem;
+}
+
+.item-card-header .precip {
+    position: relative;
+    top: 0.8rem;
+    width: 55px;
 }

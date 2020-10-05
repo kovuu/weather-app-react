@@ -27,7 +27,8 @@ const data = {
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: [65, 59, 80, 81, 56, 55, 40]
+            data: [65, 59, 80, 81, 56, 55, 40],
+            labelString: 'c'
         }
     ]
 };
@@ -39,7 +40,11 @@ export default class extends React.Component{
         const forecasts = nextProps.forecasts;
         // eslint-disable-next-line array-callback-return
         forecasts.map(forecast => {
-            labels.push(forecast.hours);
+            if (forecast.units === 'days') {
+                labels.push(forecast.day);
+            } else {
+                labels.push(forecast.hours + 'h');
+            }
             temps.push(forecast.temp);
         });
         data.labels = labels;
@@ -55,7 +60,18 @@ export default class extends React.Component{
         return (
             <div>
                 <h2>Line Example</h2>
-                {this.props.forecasts && <Line data={data} />}
+                {this.props.forecasts && <Line data={data} options={{
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    callback: function (value, index, values) {
+                                        return value + 'C°'
+                                    }
+                                },
+                            }]
+                        }
+                    }}
+                />}
             </div>
         );
     }

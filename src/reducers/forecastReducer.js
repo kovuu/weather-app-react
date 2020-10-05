@@ -1,15 +1,9 @@
-import {HOURLY_FORECAST, THREE_DAY_FORECAST, WEEKLY_FORECAST} from "../consts/actionTypes";
+import {FORECAST_UPDATE} from "../consts/actionTypes";
 
 const forecastReducer = (state = [], action) => {
     switch (action.type) {
-        case HOURLY_FORECAST:
+        case FORECAST_UPDATE:
             return action.forecastData;
-        case THREE_DAY_FORECAST:
-            console.log('3 day');
-            return state;
-        case WEEKLY_FORECAST:
-            console.log('weekly');
-            return state;
         default:
             return state;
     }

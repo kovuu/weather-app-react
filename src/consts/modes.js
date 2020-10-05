@@ -1,7 +1,7 @@
 const modes = [
-    {label: 'Сегодня', name: 'today'},
-    {label: '3 дня', name: 'three-days'},
-    {label: 'Неделя', name: 'week'},
+    {label: 'Today', name: 'today'},
+    {label: '48hrs', name: 'three-days'},
+    {label: 'Week', name: 'week'},
 ]
 
 export default modes;

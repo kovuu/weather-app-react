@@ -4,7 +4,8 @@ import CurrentWeather from "../components/CurrentWeather/CurrentWeather";
 
 const currentTime = () => {
     const date =  new Date();
-    return `${date.getHours()}:${date.getMinutes()}`;
+    const minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
+    return `${date.getHours()}:${minutes}`;
 }
 
 const mapStateToProps = ({ weatherReducer }) => ({
