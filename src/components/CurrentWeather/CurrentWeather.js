@@ -8,7 +8,7 @@ const CurrentWeather = ({ temp, time, city, humidity, wind, pressure, icon, weat
                 <h2 className="weather-card-title">Current Weather</h2>
                 <p className="weather-card-time">{time}</p>
                 <div className="forecast-container">
-                    {icon && <img alt="123" className="weather-icon" src={`http://openweathermap.org/img/wn/${icon}@2x.png`}/>}
+                    {icon && <img alt="123" className="weather-icon" src={`https://openweathermap.org/img/wn/${icon}@2x.png`}/>}
                     <div className="temp-container">
                         <div className="temp">
                             {temp}°

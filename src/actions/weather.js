@@ -55,7 +55,6 @@ export function updateForecast(params) {
                     dispatch(updateForecastDispatch(forecast));
                     break;
                 case 'week':
-                    console.log(response.data.daily);
                     forecast = getForecastWeeklyData(response.data.daily);
                     dispatch(updateForecastDispatch(forecast));
                     break;

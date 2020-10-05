@@ -53,13 +53,10 @@ export default class extends React.Component{
     }
 
 
-
-
-
     render() {
         return (
             <div>
-                <h2>Line Example</h2>
+                <h1 style={{textAlign: 'center'}}>Temperature chart</h1>
                 {this.props.forecasts && <Line data={data} options={{
                         scales: {
                             yAxes: [{

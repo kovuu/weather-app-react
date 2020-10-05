@@ -12,7 +12,7 @@
 }
 
 .item-container {
-    width: 60%;
+    width: 100%;
     padding: 2px;
 }
 
@@ -53,7 +53,6 @@
 
 .item-card-header .temp {
     font-size: 48px;
-    width: 48px;
     white-space: nowrap;
     font-weight: 500;
     line-height: 1.08;
@@ -70,13 +69,7 @@
 
 }
 
-.phrase {
-    position: relative;
-    top: 0.8rem;
-}
 
 .item-card-header .precip {
-    position: relative;
-    top: 0.8rem;
     width: 55px;
 }
